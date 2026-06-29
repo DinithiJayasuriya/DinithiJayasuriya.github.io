@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dinithi Jayasuriya — AI-Guided EDA & Silicon Research</title>
+<meta name="description" content="Dinithi Jayasuriya — PhD researcher in Electrical & Computer Engineering working on AI-guided electronic design automation (EDA), ASIC/SoC verification, and analog circuit optimization. 21 publications, ex-Synopsys." />
+<meta name="author" content="Dinithi Jayasuriya" />
+
+<!-- Open Graph (link previews on LinkedIn / Twitter) -->
+<meta property="og:title" content="Dinithi Jayasuriya — AI-Guided EDA & Silicon Research" />
+<meta property="og:description" content="PhD researcher in AI-guided EDA, ASIC/SoC verification, and analog circuit optimization. 21 publications, ex-Synopsys." />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg:        #0a0e14;
+    --bg-soft:   #0f141c;
+    --card:      #131a24;
+    --card-hover:#18212e;
+    --border:    #1f2a38;
+    --text:      #e6edf3;
+    --text-dim:  #9bafc4;
+    --text-mute: #6b7d92;
+    --accent:    #4fd1c5;   /* teal */
+    --accent-2:  #7c9eff;   /* periwinkle */
+    --accent-soft: rgba(79, 209, 197, 0.12);
+    --radius: 14px;
+    --max: 1080px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--accent); color: #06131a; }
+
+  /* ===== Background glow ===== */
+  body::before {
+    content: "";
+    position: fixed;
+    top: -20%; left: 50%;
+    transform: translateX(-50%);
+    width: 1200px; height: 700px;
+    background: radial-gradient(ellipse at center, rgba(79,209,197,0.10), transparent 60%),
+                radial-gradient(ellipse at 70% 40%, rgba(124,158,255,0.10), transparent 55%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+  /* ===== Nav ===== */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(12px);
+    background: rgba(10,14,20,0.72);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: var(--max); margin: 0 auto; padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .brand { font-weight: 700; letter-spacing: -0.02em; font-size: 1.02rem; }
+  .brand span { color: var(--accent); }
+  .nav-links { display: flex; gap: 26px; }
+  .nav-links a {
+    font-size: 0.9rem; color: var(--text-dim); font-weight: 500;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-toggle { display: none; background: none; border: 0; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+
+  /* ===== Hero ===== */
+  header { padding: 88px 0 64px; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+    color: var(--accent); background: var(--accent-soft);
+    border: 1px solid rgba(79,209,197,0.25);
+    padding: 6px 14px; border-radius: 999px; margin-bottom: 22px;
+  }
+  .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 rgba(79,209,197,0.6); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(79,209,197,.5);} 70%{box-shadow:0 0 0 9px rgba(79,209,197,0);} 100%{box-shadow:0 0 0 0 rgba(79,209,197,0);} }
+
+  h1 {
+    font-size: clamp(2.3rem, 6vw, 3.8rem);
+    font-weight: 800; letter-spacing: -0.03em; line-height: 1.05;
+    margin-bottom: 18px;
+  }
+  h1 .grad {
+    background: linear-gradient(120deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .lede {
+    font-size: clamp(1.05rem, 2.2vw, 1.28rem);
+    color: var(--text-dim); max-width: 720px; margin-bottom: 30px; font-weight: 400;
+  }
+  .lede strong { color: var(--text); font-weight: 600; }
+
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 44px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 20px; border-radius: 10px; font-weight: 600; font-size: 0.92rem;
+    transition: transform .15s, background .2s, border-color .2s;
+    border: 1px solid var(--border); cursor: pointer;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { background: var(--accent); color: #06131a; border-color: var(--accent); }
+  .btn-primary:hover { background: #6ee0d6; }
+  .btn-ghost { background: var(--card); color: var(--text); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ===== Stat strip ===== */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .stat {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 20px 18px; transition: border-color .2s, transform .2s;
+  }
+  .stat:hover { border-color: rgba(79,209,197,0.4); transform: translateY(-3px); }
+  .stat .num { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.02em; color: var(--accent); line-height: 1; }
+  .stat .lbl { font-size: 0.82rem; color: var(--text-mute); margin-top: 7px; }
+
+  /* ===== Sections ===== */
+  section { padding: 64px 0; }
+  .sec-head { margin-bottom: 38px; }
+  .sec-kicker {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--accent);
+    letter-spacing: 0.04em; margin-bottom: 10px;
+  }
+  h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 700; letter-spacing: -0.02em; }
+  .sec-sub { color: var(--text-dim); margin-top: 8px; max-width: 680px; }
+
+  /* ===== About ===== */
+  .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 36px; align-items: start; }
+  .about-grid p { color: var(--text-dim); margin-bottom: 16px; }
+  .about-grid p strong { color: var(--text); font-weight: 600; }
+  .edu-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px;
+  }
+  .edu-card h3 { font-size: 0.85rem; color: var(--text-mute); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 18px; }
+  .edu-item { padding-bottom: 18px; margin-bottom: 18px; border-bottom: 1px solid var(--border); }
+  .edu-item:last-child { border: 0; margin: 0; padding: 0; }
+  .edu-item .deg { font-weight: 700; }
+  .edu-item .school { color: var(--text-dim); font-size: 0.94rem; }
+  .edu-item .meta { color: var(--text-mute); font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; margin-top: 4px; }
+
+  /* ===== Research focus cards ===== */
+  .focus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .focus {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 26px 22px; transition: transform .2s, border-color .2s, background .2s;
+  }
+  .focus:hover { transform: translateY(-4px); border-color: rgba(79,209,197,0.4); background: var(--card-hover); }
+  .focus .ico { font-size: 1.6rem; margin-bottom: 14px; }
+  .focus h3 { font-size: 1.08rem; font-weight: 700; margin-bottom: 8px; }
+  .focus p { font-size: 0.92rem; color: var(--text-dim); }
+
+  /* ===== Timeline ===== */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before { content:""; position:absolute; left:7px; top:6px; bottom:6px; width:2px; background: var(--border); }
+  .tl-item { position: relative; margin-bottom: 34px; }
+  .tl-item:last-child { margin-bottom: 0; }
+  .tl-item::before {
+    content:""; position:absolute; left:-28px; top:5px; width:14px; height:14px; border-radius:50%;
+    background: var(--bg); border: 2px solid var(--accent);
+  }
+  .tl-item.now::before { background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+  .tl-top { display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px; align-items:baseline; }
+  .tl-role { font-weight: 700; font-size: 1.05rem; }
+  .tl-org { color: var(--accent); font-weight: 600; }
+  .tl-date { font-family:'JetBrains Mono', monospace; font-size:0.82rem; color: var(--text-mute); white-space: nowrap; }
+  .tl-item ul { list-style: none; margin-top: 10px; }
+  .tl-item li { color: var(--text-dim); font-size: 0.94rem; padding-left: 18px; position: relative; margin-bottom: 6px; }
+  .tl-item li::before { content:"▹"; position:absolute; left:0; color: var(--accent); }
+
+  /* ===== Projects ===== */
+  .proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .proj {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 26px; display: flex; flex-direction: column; transition: transform .2s, border-color .2s;
+  }
+  .proj:hover { transform: translateY(-4px); border-color: rgba(124,158,255,0.4); }
+  .proj-tag {
+    align-self: flex-start; font-family:'JetBrains Mono', monospace; font-size: 0.72rem;
+    color: var(--accent-2); background: rgba(124,158,255,0.12); border: 1px solid rgba(124,158,255,0.25);
+    padding: 4px 10px; border-radius: 6px; margin-bottom: 14px;
+  }
+  .proj h3 { font-size: 1.12rem; font-weight: 700; margin-bottom: 10px; line-height: 1.3; }
+  .proj p { color: var(--text-dim); font-size: 0.92rem; margin-bottom: 14px; flex-grow: 1; }
+  .proj .metrics { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font-family:'JetBrains Mono', monospace; font-size: 0.74rem; color: var(--accent);
+    background: var(--accent-soft); padding: 4px 9px; border-radius: 6px;
+  }
+
+  /* ===== Publications ===== */
+  .pub { display: flex; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--border); }
+  .pub:last-child { border: 0; }
+  .pub-year { font-family:'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--accent); white-space: nowrap; min-width: 78px; padding-top: 3px; }
+  .pub-body h3 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
+  .pub-body .venue { color: var(--text-dim); font-size: 0.88rem; }
+  .pub-body .venue em { color: var(--accent-2); font-style: normal; }
+  .pub-link { color: var(--accent); font-size: 0.83rem; font-family:'JetBrains Mono',monospace; }
+  .pub-link:hover { text-decoration: underline; }
+  .pub-more { margin-top: 24px; color: var(--text-mute); font-size: 0.9rem; }
+
+  /* ===== Skills ===== */
+  .skill-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .skill-cat {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px;
+  }
+  .skill-cat h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 14px; color: var(--accent); }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    font-size: 0.83rem; color: var(--text-dim); background: var(--bg-soft);
+    border: 1px solid var(--border); padding: 5px 11px; border-radius: 7px;
+    transition: color .2s, border-color .2s;
+  }
+  .tag:hover { color: var(--text); border-color: var(--accent); }
+
+  /* ===== Contact ===== */
+  #contact { text-align: center; }
+  .contact-card {
+    background: linear-gradient(160deg, var(--card), var(--bg-soft));
+    border: 1px solid var(--border); border-radius: 20px; padding: 56px 32px;
+  }
+  .contact-card h2 { margin-bottom: 14px; }
+  .contact-card p { color: var(--text-dim); max-width: 520px; margin: 0 auto 28px; }
+  .contact-links { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+  .copied { color: var(--accent) !important; }
+
+  footer { text-align: center; padding: 36px 0 48px; color: var(--text-mute); font-size: 0.85rem; }
+  footer a { color: var(--text-dim); }
+  footer a:hover { color: var(--accent); }
+
+  /* ===== Reveal animation ===== */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 860px) {
+    .about-grid, .focus-grid, .proj-grid, .skill-grid, .stats { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex; flex-direction: column; gap: 14px;
+      position: absolute; top: 56px; right: 16px; background: var(--card);
+      border: 1px solid var(--border); border-radius: 12px; padding: 18px 24px;
+    }
+    .nav-toggle { display: block; }
+    header { padding: 56px 0 40px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .pulse { animation: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#top" class="brand">Dinithi<span>.</span>J</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#publications">Publications</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header id="top">
+  <div class="wrap">
+    <div class="eyebrow"><span class="pulse"></span> Open to 2026/2027 roles · Internships & full-time</div>
+    <h1>Dinithi Jayasuriya<br><span class="grad">AI-Guided EDA &amp; Silicon Research</span></h1>
+    <p class="lede">
+      PhD researcher in Electrical &amp; Computer Engineering building <strong>AI-guided electronic
+      design automation</strong> — from LLM-assisted chip-design flows to causal optimization of analog
+      circuits. Previously an Application Engineer at <strong>Synopsys</strong> on ASIC/SoC clock-domain-crossing verification.
+    </p>
+    <div class="cta-row">
+      <a href="#contact" class="btn btn-primary">Get in touch →</a>
+      <a href="Dinithi_Jayasuriya_Resume.pdf" class="btn btn-ghost" id="resumeBtn">↓ Download résumé</a>
+      <a href="https://www.linkedin.com/in/dinithi-jayasuriya" target="_blank" rel="noopener" class="btn btn-ghost">in · LinkedIn</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="num">21</div><div class="lbl">Publications</div></div>
+      <div class="stat"><div class="num">60+</div><div class="lbl">Citations</div></div>
+      <div class="stat"><div class="num">3.9</div><div class="lbl">PhD GPA / 4.0</div></div>
+      <div class="stat"><div class="num">2+ yrs</div><div class="lbl">Industry (Synopsys)</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-kicker">// 01 — about</div>
+      <h2>Bridging machine learning and chip design</h2>
+    </div>
+    <div class="about-grid reveal">
+      <div>
+        <p>
+          I'm a PhD Research Assistant at the <strong>University of Illinois Chicago</strong>, working at the
+          intersection of <strong>EDA and AI</strong>. My research studies reliability and uncertainty in
+          LLM-assisted hardware-design workflows (OpenROAD) through controlled experiments, failure
+          analysis, and metric-driven optimization.
+        </p>
+        <p>
+          Before my PhD, I spent two years at <strong>Synopsys</strong> as an Application Engineer in
+          Clock Domain Crossing verification — debugging complex customer issues, owning end-to-end
+          enablement for <strong>Apple and Renesas</strong>, and building regression-style validation
+          workflows. I validated a glitch-identification feature for Apple to <strong>98% accuracy</strong>
+          and earned an internal performance scholarship.
+        </p>
+        <p>
+          My strengths sit where rigorous hardware engineering meets applied ML: RTL &amp; verification
+          fundamentals, SPICE-based analog evaluation, physical-design PPA, and scripting-driven
+          experiment pipelines — now amplified with causal inference and agentic LLM tooling.
+        </p>
+      </div>
+      <div class="edu-card">
+        <h3>Education</h3>
+        <div class="edu-item">
+          <div class="deg">PhD, Electrical &amp; Computer Engineering</div>
+          <div class="school">University of Illinois, Chicago</div>
+          <div class="meta">CGPA 3.9/4.0 · Expected 2028</div>
+        </div>
+        <div class="edu-item">
+          <div class="deg">BSc, Electrical &amp; Electronics Engineering</div>
+          <div class="school">University of Sri Jayewardenepura, Sri Lanka</div>
+          <div class="meta">GPA 3.64/4.0 · 2016 – 2021</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RESEARCH FOCUS ===== -->
+<section id="research">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-kicker">// 02 — research focus</div>
+      <h2>What I work on</h2>
+      <p class="sec-sub">Three threads connecting reliable AI systems with the realities of silicon and circuit design.</p>
+    </div>
+    <div class="focus-grid">
+      <div class="focus reveal">
+        <div class="ico">🤖</div>
+        <h3>LLM-Assisted EDA</h3>
+        <p>Verifier-guided code generation for OpenROAD that enforces structural correctness <em>before</em>
+        execution — cutting reliance on tool-in-the-loop debugging and unreliable candidates.</p>
+      </div>
+      <div class="focus reveal">
+        <div class="ico">🔀</div>
+        <h3>Causal Circuit Optimization</h3>
+        <p>Learning the causal structure of analog circuits to make multi-objective optimization
+        interpretable, sample-efficient, and transferable across technologies — validated in SPICE.</p>
+      </div>
+      <div class="focus reveal">
+        <div class="ico">🔬</div>
+        <h3>Verification &amp; Reliability</h3>
+        <p>RTL/CDC verification rigor, design-of-experiments, and failure analysis — building reproducible
+        pipelines that quantify PPA and quality-of-results trade-offs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EXPERIENCE ===== -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-kicker">// 03 — experience</div>
+      <h2>Where I've worked</h2>
+    </div>
+    <div class="timeline reveal">
+      <div class="tl-item now">
+        <div class="tl-top">
+          <div><span class="tl-role">PhD Research Assistant</span> · <span class="tl-org">University of Illinois Chicago</span></div>
+          <div class="tl-date">Aug 2023 – Present</div>
+        </div>
+        <ul>
+          <li>Lead research at the intersection of EDA and AI: define hypotheses, design controlled evaluations, publish and present results.</li>
+          <li>Build tooling to analyze intermediate EDA signals (reports/logs) for debugging, failure-mode classification, and metric-driven optimization across design stages.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-top">
+          <div><span class="tl-role">Application Engineer — CDC / Verification</span> · <span class="tl-org">Synopsys Inc.</span></div>
+          <div class="tl-date">Aug 2021 – Jul 2023</div>
+        </div>
+        <ul>
+          <li>Supported advanced ASIC/SoC verification flows for clock-domain-crossing correctness; delivered clear root-cause analysis with actionable fixes.</li>
+          <li>Owned end-to-end customer enablement for <strong>Apple and Renesas</strong> — reproducible testcases, documentation, and quality-driven escalation handling with R&amp;D.</li>
+          <li>Validated a glitch-identification feature for Apple to <strong>98% accuracy</strong>; received an internal performance scholarship.</li>
+          <li>Built regression-style CDC validation workflows: minimal-repro testcases, pass/fail checks, and controlled experiments across tool settings.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-top">
+          <div><span class="tl-role">Electronic Engineer Intern</span> · <span class="tl-org">Mobitel (Pvt) Ltd</span></div>
+          <div class="tl-date">Mar 2020 – Sep 2020</div>
+        </div>
+        <ul>
+          <li>Production troubleshooting and operational validation across telecom infrastructure — systematic debugging and documentation in a live environment.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROJECTS ===== -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-kicker">// 04 — selected projects</div>
+      <h2>Things I've built</h2>
+    </div>
+    <div class="proj-grid">
+      <div class="proj reveal">
+        <span class="proj-tag">ICCAD 2026 · under review</span>
+        <h3>Verifier-Guided EDA Code Generation in OpenROAD</h3>
+        <p>A verifier-guided framework for LLM-based OpenROAD code generation that enforces structural
+        correctness before execution. Models query–action tasks as dependency graphs to guide retrieval,
+        constrained generation, and staged pre-execution verification.</p>
+        <div class="metrics">
+          <span class="chip">82.5% single-step pass</span>
+          <span class="chip">84.0% multi-step pass</span>
+          <span class="chip">2× fewer tool calls</span>
+          <span class="chip">precision 80% → 93.3%</span>
+        </div>
+      </div>
+      <div class="proj reveal">
+        <span class="proj-tag">SPICE · 2024 – present</span>
+        <h3>Causal Structure Learning for Analog Circuit Optimization</h3>
+        <p>Inferring the causal structure of analog circuits — relating design parameters and
+        operating-point behaviors to performance metrics — for interpretable, sample-efficient optimization
+        that generalizes to larger circuits without heavy manual tuning.</p>
+        <div class="metrics">
+          <span class="chip">gain · UGBW · phase margin</span>
+          <span class="chip">multi-objective</span>
+          <span class="chip">tech-transfer</span>
+        </div>
+      </div>
+      <div class="proj reveal">
+        <span class="proj-tag">Foundation models · 2024</span>
+        <h3>Dynamic Rank Learning for Quantized Foundation Models</h3>
+        <p>Enhanced Low-Rank Adaptation (LoRA) with dynamic rank learning, emphasizing accuracy–efficiency
+        trade-offs relevant to performance-aware compute systems.</p>
+        <div class="metrics">
+          <span class="chip">LoRA</span>
+          <span class="chip">quantization</span>
+          <span class="chip">efficient fine-tuning</span>
+        </div>
+      </div>
+      <div class="proj reveal">
+        <span class="proj-tag">Embedded · 2020</span>
+        <h3>Gesture-Controlled Smart Room Kit</h3>
+        <p>Undergraduate embedded-systems project for gesture-based room control — placed 7th in the
+        Robotics &amp; Embedded Systems category at the Innovation &amp; Invention Exhibition.</p>
+        <div class="metrics">
+          <span class="chip">embedded</span>
+          <span class="chip">🏆 7th place</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PUBLICATIONS ===== -->
+<section id="publications">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-kicker">// 05 — publications</div>
+      <h2>Selected publications</h2>
+      <p class="sec-sub">21 papers · 60+ citations as of 2026. A selection across EDA, ML, and device research.</p>
+    </div>
+    <div class="reveal">
+      <div class="pub">
+        <div class="pub-year">2026</div>
+        <div class="pub-body">
+          <h3>Structural Verification for Reliable EDA Code Generation without Tool-in-the-Loop Debugging</h3>
+          <div class="venue">Submitted to <em>ICCAD 2026</em> · arXiv:2604.18834 ·
+            <a class="pub-link" href="https://arxiv.org/abs/2604.18834" target="_blank" rel="noopener">arXiv ↗</a>
+          </div>
+        </div>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2025</div>
+        <div class="pub-body">
+          <h3>CaDRO: Causal-Guided Dimensionality Reduction for Scalable Multi-Objective Pareto Optimization</h3>
+          <div class="venue">Design, Automation &amp; Test in Europe (<em>DATE</em>)</div>
+        </div>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2025</div>
+        <div class="pub-body">
+          <h3>Gaussian-Sigmoid Reinforcement Transistors: Resolving Exploration–Exploitation Trade-Off via Gate Voltage-Controlled Activation Functions</h3>
+          <div class="venue"><em>Advanced Functional Materials</em></div>
+        </div>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2025</div>
+        <div class="pub-body">
+          <h3>SPARC: Subspace-Aware Prompt Adaptation for Robust Continual Learning in LLMs</h3>
+          <div class="venue"><em>IJCNN 2025</em></div>
+        </div>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2025</div>
+        <div class="pub-body">
+          <h3>Enhancing 3D Robotic Vision Robustness by Minimizing Adversarial Mutual Information through Curriculum Training</h3>
+          <div class="venue"><em>ICRA 2025</em></div>
+        </div>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2024</div>
+        <div class="pub-body">
+          <h3>Neural Precision Polarization: Simplifying Neural Network Inference with Dual-Level Precision</h3>
+          <div class="venue"><em>IEEE ISCAS 2025</em></div>
+        </div>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2024</div>
+        <div class="pub-body">
+          <h3>Single-Step Extraction of Transformer Attention with Dual-Gated Memtransistor Crossbars</h3>
+          <div class="venue"><em>IEEE Electron Device Letters</em></div>
+        </div>
+      </div>
+      <p class="pub-more">+ 14 more publications. See the full list on
+        <a class="pub-link" href="https://scholar.google.com/" target="_blank" rel="noopener">Google Scholar ↗</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SKILLS ===== -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-kicker">// 06 — toolbox</div>
+      <h2>Technical skills</h2>
+    </div>
+    <div class="skill-grid">
+      <div class="skill-cat reveal">
+        <h3>Silicon / Hardware</h3>
+        <div class="tags">
+          <span class="tag">RTL fundamentals</span><span class="tag">SystemVerilog</span><span class="tag">Verilog</span>
+          <span class="tag">Assertions (SVA)</span><span class="tag">CDC</span><span class="tag">ASIC/SoC verification</span>
+          <span class="tag">Debug &amp; root-cause</span>
+        </div>
+      </div>
+      <div class="skill-cat reveal">
+        <h3>Physical Design / PPA</h3>
+        <div class="tags">
+          <span class="tag">OpenROAD (PnR)</span><span class="tag">QoR / PPA reporting</span><span class="tag">Timing &amp; constraints</span>
+          <span class="tag">Congestion / wirelength</span><span class="tag">Experiment-driven opt.</span>
+        </div>
+      </div>
+      <div class="skill-cat reveal">
+        <h3>Analog / Circuits</h3>
+        <div class="tags">
+          <span class="tag">SPICE (DC/AC/Transient/Noise)</span><span class="tag">Corner evaluation</span>
+          <span class="tag">Gain · UGBW · phase margin</span><span class="tag">Power · noise · slew</span>
+        </div>
+      </div>
+      <div class="skill-cat reveal">
+        <h3>Programming / Scripting</h3>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">Bash</span><span class="tag">Tcl (EDA flows)</span>
+          <span class="tag">Git</span><span class="tag">Linux</span>
+        </div>
+      </div>
+      <div class="skill-cat reveal">
+        <h3>AI / ML</h3>
+        <div class="tags">
+          <span class="tag">LLM tool scripting</span><span class="tag">Agentic diagnose–fix–rerun</span>
+          <span class="tag">Causal inference / SCMs</span><span class="tag">LoRA · quantization</span>
+        </div>
+      </div>
+      <div class="skill-cat reveal">
+        <h3>Research / Methods</h3>
+        <div class="tags">
+          <span class="tag">Design of Experiments</span><span class="tag">Failure analysis</span><span class="tag">Data analysis</span>
+          <span class="tag">Reproducibility</span><span class="tag">Technical documentation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-card reveal">
+      <div class="sec-kicker" style="text-align:center;">// 07 — contact</div>
+      <h2>Let's build something at the edge of AI &amp; silicon</h2>
+      <p>I'm actively exploring research and engineering roles in EDA, verification, and applied ML.
+      The fastest way to reach me is email.</p>
+      <div class="contact-links">
+        <a href="mailto:dkasth2@uic.edu" class="btn btn-primary" id="emailBtn">✉ dkasth2@uic.edu</a>
+        <a href="https://www.linkedin.com/in/dinithi-jayasuriya" target="_blank" rel="noopener" class="btn btn-ghost">in · LinkedIn</a>
+        <a href="https://scholar.google.com/" target="_blank" rel="noopener" class="btn btn-ghost">🎓 Google Scholar</a>
+        <a href="tel:+13125227596" class="btn btn-ghost">☎ +1 312 522 7596</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    © <span id="year">2026</span> Dinithi Jayasuriya · Built with care ·
+    <a href="mailto:dkasth2@uic.edu">dkasth2@uic.edu</a>
+  </div>
+</footer>
+
+<script>
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Mobile nav
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Click-to-copy email
+  const emailBtn = document.getElementById('emailBtn');
+  emailBtn.addEventListener('click', (ev) => {
+    if (navigator.clipboard) {
+      ev.preventDefault();
+      navigator.clipboard.writeText('dkasth2@uic.edu').then(() => {
+        const original = emailBtn.textContent;
+        emailBtn.textContent = '✓ Copied!';
+        emailBtn.classList.add('copied');
+        setTimeout(() => { emailBtn.textContent = original; emailBtn.classList.remove('copied'); }, 1600);
+      });
+    }
+  });
+</script>
+</body>
+</html>
